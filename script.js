@@ -16,40 +16,6 @@ function showContent(id) {
     // İleride burada sayfa dilini değiştiririz
   }
   
-  // Sayfa yüklendiğinde ilk sekmeyi aç
-  window.onload = function() {
-    document.getElementById('jobcomparison').style.display = 'block';
-  };
-  
-// Job data
-const jobData = {
-    "Finance": {
-      "Financial Analyst": {
-        responsibilities: "Analyze financial data, prepare reports, forecast trends",
-        skills: "Excel, financial modeling, data analysis",
-        education: "Bachelor’s in Finance/Accounting/Economics",
-        certifications: "CFA/FMVA (optional)",
-        experience: "1-3 years"
-      },
-      "Financial Advisor": {
-        responsibilities: "Advise clients on investments/retirement",
-        skills: "Client management, sales, CFP preferred",
-        education: "Bachelor’s in Finance/Business",
-        certifications: "CFP, Series 7/63",
-        experience: "2-4 years"
-      }
-    },
-    "Engineering": {
-      "Mechanical Engineer": {
-        responsibilities: "Design and develop mechanical systems",
-        skills: "CAD, problem-solving, material knowledge",
-        education: "Bachelor’s in Mechanical Engineering",
-        certifications: "PE license",
-        experience: "2-5 years"
-      }
-    }
-  };
-  
   // Populate sectors
   function populateSectors(sectorId) {
     const sectorSelect = document.getElementById(sectorId);
@@ -249,7 +215,9 @@ setTimeout(() => {
   }, 100);  
 
   document.querySelector('.favorite-button').style.display = 'block';
-document.querySelector('.pdf-button').style.display = 'block';
+  document.querySelector('.pdf-button').style.display = 'block';
+  document.querySelector('.saved-button-link').style.display = 'block';
+  
 
   }  
 
@@ -298,15 +266,34 @@ document.querySelector('.pdf-button').style.display = 'block';
     alert('Language switched to: ' + lang.toUpperCase());
   }
   
-  // Page load
   window.onload = function() {
+    // Eğer sektör ve iş seçimi varsa onları doldur
     if (document.getElementById('sector1') && document.getElementById('sector2')) {
       populateSectors('sector1');
       populateSectors('sector2');
     }
   
+    // Eğer jobcomparison divi varsa onu göster
     if (document.getElementById('jobcomparison')) {
       document.getElementById('jobcomparison').style.display = 'block';
+    }
+  
+    // Eğer localStorage'da selectedFavorite varsa onu kullan
+    const selectedFavorite = JSON.parse(localStorage.getItem('selectedFavorite'));
+    if (selectedFavorite) {
+      setTimeout(() => {
+        document.getElementById('sector1').value = selectedFavorite.sector1;
+        populateJobs('sector1', 'job1');
+        document.getElementById('sector2').value = selectedFavorite.sector2;
+        populateJobs('sector2', 'job2');
+  
+        setTimeout(() => {
+          document.getElementById('job1').value = selectedFavorite.job1;
+          document.getElementById('job2').value = selectedFavorite.job2;
+          compareJobs();
+          localStorage.removeItem('selectedFavorite'); // Favori kullanıldıktan sonra temizleniyor
+        }, 300);
+      }, 300);
     }
   };
   
@@ -327,4 +314,45 @@ document.querySelector('.pdf-button').style.display = 'block';
       })
       .save();
   }
+  
+  function openSaved() {
+    const modal = document.getElementById('savedModal');
+    const savedList = document.getElementById('savedList');
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  
+    savedList.innerHTML = '';
+  
+    if (favorites.length === 0) {
+      savedList.innerHTML = `<p style="text-align:center; font-size:18px; color:gray;">You have no saved comparisons yet.</p>`;
+    } else {
+      favorites.forEach((fav, index) => {
+        const div = document.createElement('div');
+        div.style.padding = '10px 0';
+        div.innerHTML = `
+          <strong>Comparison ${index + 1}</strong><br>
+          First Job: ${fav.job1} (${fav.sector1})<br>
+          Second Job: ${fav.job2} (${fav.sector2})<br>
+          <hr>
+        `;
+        savedList.appendChild(div);
+      });
+    }
+  
+    modal.style.display = 'block';
+  }
+  
+  function closeSaved() {
+    document.getElementById('savedModal').style.display = 'none';
+  }
+
+  function showFavoriteLoadedMessage() {
+    const msg = document.createElement('div');
+    msg.className = 'favorite-loaded-message';
+    msg.innerText = 'This comparison was loaded from your favorites!';
+    document.querySelector('.solutions').prepend(msg);
+    setTimeout(() => {
+      msg.remove();
+    }, 4000); // 4 saniyede kaybolur
+  }
+  
   

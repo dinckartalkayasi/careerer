@@ -23,9 +23,10 @@
         <li class="dropdown">
           <a href="#">Solutions</a>
           <div class="dropdown-content">
-            <a href="jobcomparison.html">Job Comparison Tool</a>
+            <a href="jobcomparison.html" onclick="clearFavorite()">Job Comparison Tool</a>
             <a href="careersurvey.html">Career Survey</a>
             <a href="jobidentifier.html">Job Identifier Tool</a>
+            <a href="favorites.html">Favorite Comparisons</a>
           </div>
         </li>
         <li><a href="#">About Us</a></li>
@@ -95,5 +96,11 @@
     };
   </script>
 
-</body>
-</html>
+<script>
+    function clearFavorite() {
+      localStorage.removeItem('selectedFavorite');
+    }
+  </script>
+  </body>
+  </html>
+  

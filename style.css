@@ -324,18 +324,20 @@ html {
   }
   
   .comparison-table {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 50px;
-    flex-wrap: wrap;
-  }
+    align-items: start;
+    justify-content: center;
+    margin-top: 30px;
+  }  
   
   .comparison-column {
     background: #ffffff;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 300px;
+    width: 800px;
     transition: transform 0.3s ease;
   }
   
@@ -450,21 +452,158 @@ html {
   .favorite-button:hover {
     background: #218838;
   }
-  
-  /* Safari Flexbox Fix */
-@supports (-webkit-touch-callout: none) {
-    .comparison-result, .comparison-table {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 50px;
-    }
-  
-    .comparison-column {
-      width: 300px;
-      margin-bottom: 20px;
-      box-sizing: border-box;
-    }
+
+  /* Saved Button */
+.saved-button {
+    display: none; /* Başta gizli */
+    margin: 10px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
   }
+  
+  .saved-button:hover {
+    background: #e0a800;
+  }
+  
+  /* Modal Styling */
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  
+  .close {
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+  }
+  
+  #savedList {
+    margin-top: 20px;
+  }
+  
+  .saved-button-link {
+    display: inline-block; /* inline-block yapıyoruz */
+    margin: 10px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .saved-button-link:hover {
+    background: #e0a800;
+  }
+  
+  .saved-comparisons-button {
+    display: inline-block;
+    background: #f9b233;
+    color: black;
+    padding: 12px 30px;
+    margin: 20px auto 0 auto;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s;
+    width: auto;
+    max-width: 250px;
+  }
+  
+  .saved-comparisons-button:hover {
+    background: #d89d1f;
+    color: white;
+  }
+
+  .comparison-result {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .comparison-table {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  .comparison-column {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 400px; /* Artık 400px oldu */
+    transition: transform 0.3s ease;
+  }
+  
+  .comparison-column:hover {
+    transform: translateY(-5px);
+  }
+  
+  .comparison-column h3 {
+    margin-bottom: 20px;
+    color: #0077cc;
+    font-size: 22px;
+    text-align: center;
+  }
+  
+  .comparison-column p {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .highlight {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  
   
