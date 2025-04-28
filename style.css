@@ -451,3 +451,20 @@ html {
     background: #218838;
   }
   
+  /* Safari Flexbox Fix */
+@supports (-webkit-touch-callout: none) {
+    .comparison-result, .comparison-table {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+    }
+  
+    .comparison-column {
+      width: 300px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+  }
+  
