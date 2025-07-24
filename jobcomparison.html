@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Careerer - Job Comparison Tool</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <script src="assets/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="assets/careererlogo.png" alt="Careerer Logo">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">Platform</a></li>
+        <li class="dropdown">
+          <a href="#">Solutions</a>
+          <div class="dropdown-content">
+            <a href="jobcomparison.html">Job Comparison Tool</a>
+            <a href="careersurvey.html">Career Survey</a>
+            <a href="jobidentifier.html">Job Identifier Tool</a>
+            <a href="favorites.html">Favorite Comparisons</a>
+          </div>
+        </li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Upcomings</a></li>
+        <li class="language-select">
+          <img src="assets/world.png" alt="Language">
+          <div class="language-dropdown">
+            <a href="#" onclick="setLanguage('en')">EN</a>
+            <a href="#" onclick="setLanguage('cz')">CZ</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Job Comparison Section -->
+  <section class="solutions">
+    <h2 class="animate__animated animate__fadeInUp">Job Comparison Tool</h2>
+
+    <div class="comparison-container">
+      <div class="selector">
+        <h3>First Job</h3>
+        <select id="sector1" onchange="populateJobs('sector1', 'job1')">
+          <option value="">Select Sector</option>
+        </select>
+        <select id="job1">
+          <option value="">Select Job</option>
+        </select>
+      </div>
+      <div class="selector">
+        <h3>Second Job</h3>
+        <select id="sector2" onchange="populateJobs('sector2', 'job2')">
+          <option value="">Select Sector</option>
+        </select>
+        <select id="job2">
+          <option value="">Select Job</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="button-group">
+        <button class="compare-button" onclick="compareJobs()">Compare</button>
+        <a href="favorites.html" class="saved-comparisons-button">Saved Comparisons</a>
+        <button class="favorite-button" onclick="saveFavorite()">Save Comparison</button>
+        <button class="pdf-button" onclick="downloadPDF()">Save as PDF</button>        
+    </div>
+
+    <div id="comparisonResult" class="comparison-result"></div>
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<script src="jobdata.js"></script>
+<script src="script.js"></script>
+

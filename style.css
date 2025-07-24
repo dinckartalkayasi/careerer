@@ -1,0 +1,649 @@
+html {
+    scroll-behavior: smooth;
+  }  
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Menüleri ortaladık */
+    padding: 20px 50px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  /* Logo */
+  .logo {
+    position: absolute;
+    left: 50px;
+  }
+  
+  .logo img {
+    height: 80px; /* Logo büyütüldü */
+  }
+  
+  /* Navigation */
+  .nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav ul li {
+    margin-left: 30px;
+    position: relative;
+  }
+  
+  .nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3 ease;
+  }
+  
+  .nav ul li a:hover {
+    color: #0077cc;
+    transform: translateY(-2px);
+  }
+  
+  /* Dropdown Menu */
+  .dropdown-content, .language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* burada top: 40px yazıyordu, şimdi top: 100% yapıyoruz */
+    left: 0;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    min-width: 180px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .dropdown-content a, .language-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .dropdown-content a:hover, .language-dropdown a:hover {
+    background: #f1f1f1;
+  }
+  
+  /* Show dropdown on hover */
+  .dropdown:hover .dropdown-content,
+  .language-select:hover .language-dropdown {
+    display: block;
+  }
+  
+  /* Hero Section */
+  .hero {
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Dark overlay on background */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* %70 siyah katman */
+    z-index: 1;
+  }
+  
+  /* Hero content üstte */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+  }
+  
+  .hero-content h1, .hero-content h2, .hero-content h3 {
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  }
+  
+  /* Solutions Section */
+  .solutions {
+    padding: 50px;
+    text-align: center;
+    background: #ffffff;
+  }
+  
+  .tabs {
+    margin-top: 30px;
+  }
+  
+  .tablink {
+    background: #f1f1f1;
+    border: none;
+    padding: 12px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 30px;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .tablink:hover {
+    background: #0077cc;
+    color: white;
+  }
+  
+  .tablink.active {
+    background: #0077cc;
+    color: white;
+  }
+  
+  .tabcontent {
+    display: none;
+    margin-top: 30px;
+  }
+  
+  .tabcontent img {
+    width: 700px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .tabcontent p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #555;
+  }
+  
+  /* Language Select Icon */
+  .language-select img {
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  /* Animation Delay */
+  .animate__delay-1s {
+    animation-delay: 0.5s;
+  }
+  .animate__delay-2s {
+    animation-delay: 1s;
+  }
+  .animate__delay-3s {
+    animation-delay: 1.5s;
+  }
+  
+  /* Hover açık kalma ayarı */
+.dropdown, .language-select {
+    position: relative;
+  }
+  
+  .dropdown-content, .language-dropdown {
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .dropdown:hover .dropdown-content,
+  .language-select:hover .language-dropdown {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 20px;
+    }
+  
+    .logo {
+      position: relative;
+      left: 0;
+      margin-bottom: 10px;
+    }
+  
+    .logo img {
+      height: 60px;
+    }
+  
+    .nav ul {
+      flex-direction: column;
+    }
+  
+    .nav ul li {
+      margin: 10px 0;
+    }
+  
+    .hero {
+      height: 70vh;
+      padding: 20px;
+    }
+  
+    .hero-content h1, .hero-content h2, .hero-content h3 {
+      font-size: 20px;
+    }
+  
+    .tablink {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+  }
+  
+  /* Comparison Section */
+.comparison-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+  }
+  
+  .selector {
+    background: #f0f4f8;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .selector:hover {
+    transform: translateY(-5px);
+  }
+  
+  .selector h3 {
+    margin-bottom: 15px;
+    color: #0077cc;
+    font-size: 20px;
+  }
+  
+  .selector select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .compare-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .compare-button:hover {
+    background: #005fa3;
+  }
+  
+  .comparison-result {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .comparison-table {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    align-items: start;
+    justify-content: center;
+    margin-top: 30px;
+  }  
+  
+  .comparison-column {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 800px;
+    transition: transform 0.3s ease;
+  }
+  
+  .comparison-column:hover {
+    transform: translateY(-5px);
+  }
+  
+  .comparison-column h3 {
+    margin-bottom: 20px;
+    color: #0077cc;
+    font-size: 22px;
+  }
+  
+  .comparison-column p {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .highlight {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+/* Comparison Result Animations */
+.comparison-table {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+  }
+  
+  .comparison-table.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Highlighted Text Animation */
+  .highlight {
+    color: #28a745;
+    font-weight: bold;
+    animation: pop 0.5s ease;
+  }
+  
+  @keyframes pop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Comparison Hover Effects */
+  .comparison-column {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .comparison-column:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+  
+  .favorite-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .favorite-button:hover {
+    background: #218838;
+  }
+  
+  .pdf-button {
+    display: none; /* Başta gizli olacak */
+    margin: 10px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #6c757d; /* Gri renk */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .pdf-button:hover {
+    background: #5a6268;
+  }
+  
+  .favorite-button {
+    display: none; /* Başta gizli olacak */
+    margin: 10px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #28a745; /* Yeşil */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .favorite-button:hover {
+    background: #218838;
+  }
+
+  /* Saved Button */
+.saved-button {
+    display: none; /* Başta gizli */
+    margin: 10px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .saved-button:hover {
+    background: #e0a800;
+  }
+  
+  /* Modal Styling */
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  
+  .close {
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+  }
+  
+  #savedList {
+    margin-top: 20px;
+  }
+  
+  .saved-button-link {
+    display: inline-block; /* inline-block yapıyoruz */
+    margin: 10px auto;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .saved-button-link:hover {
+    background: #e0a800;
+  }
+  
+  .saved-comparisons-button {
+    display: inline-block;
+    background: #f9b233;
+    color: black;
+    padding: 12px 30px;
+    margin: 20px auto 0 auto;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s;
+    width: auto;
+    max-width: 250px;
+  }
+  
+  .saved-comparisons-button:hover {
+    background: #d89d1f;
+    color: white;
+  }
+
+  .comparison-result {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .comparison-table {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  .comparison-column {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 400px; /* Artık 400px oldu */
+    transition: transform 0.3s ease;
+  }
+  
+  .comparison-column:hover {
+    transform: translateY(-5px);
+  }
+  
+  .comparison-column h3 {
+    margin-bottom: 20px;
+    color: #0077cc;
+    font-size: 22px;
+    text-align: center;
+  }
+  
+  .comparison-column p {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .highlight {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: #2b6cb0;
+    color: white;
+    padding: 12px 28px;
+    font-size: 1rem;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta-button:hover {
+    background-color: #1a4f8a;
+    transform: translateY(-2px);
+  }
+    
+  .hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero-content h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+  }
+
+  

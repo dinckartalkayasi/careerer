@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Careerer</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="assets/careererlogo.png" alt="Careerer Logo">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="#">Platform</a></li>
+        <li class="dropdown">
+          <a href="#">Solutions</a>
+          <div class="dropdown-content">
+            <a href="jobcomparison.html" onclick="clearFavorite()">Job Comparison Tool</a>
+            <a href="careersurvey.html">Career Survey</a>
+            <a href="jobidentifier.html">Job Identifier Tool</a>
+            <a href="favorites.html">Favorite Comparisons</a>
+          </div>
+        </li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Upcomings</a></li>
+        <li class="language-select">
+          <img src="assets/world.png" alt="Language">
+          <div class="language-dropdown">
+            <a href="#" onclick="setLanguage('en')">EN</a>
+            <a href="#" onclick="setLanguage('cz')">CZ</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+<!-- Hero Section -->
+<section class="hero" style="background-image: url('assets/graduation.png');">
+  <div class="hero-content animate__animated animate__fadeIn">
+    <h1 class="animate__animated animate__fadeInUp animate__delay-1s">Your Career Starts Here with Careerer</h1>
+    <h2 class="animate__animated animate__fadeInUp animate__delay-2s">Swipe. Compare. Discover your dream job, all in one place.</h2>
+    <h3 class="animate__animated animate__fadeInUp animate__delay-3s">We’re not just a platform, we’re your CAREERER!</h3>      
+  </div>
+</section>
+
+<div class="cta animate__animated animate__fadeInUp animate__delay-4s">
+  <p style="font-size: 1.3rem; text-align: center; margin-top: 20px;">
+    Start exploring your future, it’s free, fast, and made just for you.
+  </p>
+  <div style="text-align: center; margin-top: 15px;">
+    <a href="jobcomparison.html" class="cta-button">Start Now</a>
+  </div>
+</div>
+
+  <!-- Solutions Section -->
+  <section class="solutions">
+    <h2 class="animate__animated animate__fadeInUp">Enjoyable Solutions for Students</h2>
+    <div class="tabs">
+      <button class="tablink active" onclick="showContent('jobcomparison')">Job Comparison Tool</button>
+      <button class="tablink" onclick="showContent('careersurvey')">Career Survey</button>
+      <button class="tablink" onclick="showContent('jobidentifier')">Job Identifier Tool</button>
+    </div>
+    <div id="jobcomparison" class="tabcontent animate__animated animate__fadeIn">
+      <img src="assets/jobcomparisontool.png" alt="Job Comparison">
+      <p>Not sure if you'd rather code or counsel? Compare two careers side by side and see what fits you best. Your Careerer, your choice.</p>
+    </div>
+    <div id="careersurvey" class="tabcontent">
+      <img src="assets/careersurvey.png" alt="Career Survey">
+      <p>Take our swipe-style survey to uncover your career match. It’s like a personality test, but for your future job.</p>
+    </div>
+    <div id="jobidentifier" class="tabcontent">
+      <img src="assets/jobidentifier.png" alt="Job Identifier">
+      <p>Enter your skills, background, and dreams, we’ll show you careers you never knew existed. Discover your hidden fit.</p>
+    </div>
+    </section>    
+
+  <script>
+    function showContent(id) {
+      var contents = document.getElementsByClassName('tabcontent');
+      var tabs = document.getElementsByClassName('tablink');
+      for (var i = 0; i < contents.length; i++) {
+        contents[i].style.display = 'none';
+        tabs[i].classList.remove('active');
+      }
+      document.getElementById(id).style.display = 'block';
+      event.currentTarget.classList.add('active');
+    }
+
+    function setLanguage(lang) {
+      alert('Language switched to: ' + lang.toUpperCase());
+      // Daha sonra tam çeviri fonksiyonları burada çalışacak.
+    }
+
+    window.onload = function() {
+      document.getElementById('jobcomparison').style.display = 'block';
+    };
+  </script>
+
+<script>
+    function clearFavorite() {
+      localStorage.removeItem('selectedFavorite');
+    }
+  </script>
+  </body>
+  </html>
+  
